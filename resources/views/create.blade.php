@@ -1,15 +1,25 @@
 @extends('layout')
 
 @section('content')
-<form action="{{ route('store') }}" method="post">
-@csrf
-<textarea name="content" id="" cols="30" rows="10"></textarea>
-<input type="submit" value="作成">
-<a href="{{ route('index') }}">戻る</a>
-</form>
-@if($errors->any())
-    @foreach($errors->all() as $error)
-    <p>{{ $error }}</p>
-    @endforeach
-@endif
+
+    <form method="POST" action="{{ route('store') }}">
+      @csrf
+
+        <div>
+          <textarea name="content" rows="4" class="form-control mt-4"></textarea>
+        </div>
+
+        @if ($errors->any())
+          @foreach ($errors->all() as $error)
+              <p class="text-right text-black-50">{{ $error }}</p>
+          @endforeach
+        @endif
+
+        <div class="text-right mt-4">
+          <button type="submit" class="btn btn-outline-secondary btn-sm">作成</button>
+          <a href="{{ route('index') }}" class="btn btn-outline-secondary btn-sm">キャンセル</a>
+        </div>
+
+    </form>
+
 @endsection
